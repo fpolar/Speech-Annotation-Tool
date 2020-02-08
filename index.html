@@ -1,0 +1,152 @@
+<html>
+<head>
+<title>Talking Tool</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css"
+	href="./bootstrap/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="css/general.css" />
+<link rel="stylesheet" type="text/css"
+	href="./css/menu.css" />
+<link rel="stylesheet" type="text/css"
+	href="./css/tables.css" />
+<link rel="stylesheet" type="text/css"
+	href="./css/formStyles.css" />
+<link rel="stylesheet" type="text/css"
+	href="./css/inputrange.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="./js/jquery-3.1.1.min.js"></script>
+<script src="./bootstrap/bootstrap.min.js"></script>
+</head>
+<body>
+	<div id="tool" class="row">
+		<div class="col col-sm-7" id="media">
+			<div id="URLPopup">
+				<div id="URLLabel">Insert Video URL</div>
+				<input type="text" id="videoURL">
+				<button id="submitURL" style="" onclick="getVideo()">Submit
+					URL</button>
+			</div>
+			<video id="v" style="display: none">
+				<source src="videos/spy_sample.mp4"
+					type="video/mp4">
+			</video>
+			<div id="canvas"></div>
+			<div id="controls" style="display: none">
+				<div class="col col-xs-3">
+					<button id="pp" onclick="letsPlay()">	<i class="fa fa-play"></i></button>
+				</div>
+				<div id="timer" class="col col-xs-6 col-xs-offset-2">00:00:00</div>
+				<input class="col col-xs-12" id="sld" onclick="sync()" type="range" min="0" max="100"
+					value="50">
+
+				<div id="playback" class="col col-xs-12">
+					<div class="col col-xs-2"><button onclick="myVideo.playbackRate--"><i class="fa fa-angle-double-left"></i>	</button>
+					</div>
+					<div class="col col-xs-2">
+					<button onclick="myVideo.playbackRate-=0.1">	<i class="fa fa-angle-left"></i></button>
+					</div>
+					<div class="col col-xs-4">
+					Playback Rate
+					</div>
+					<div class="col col-xs-2"><button onclick="myVideo.playbackRate+=0.1">	<i class="fa fa-angle-right"></i></button>
+					</div>
+					<div class="col col-xs-2"><button onclick="myVideo.playbackRate++"><i class="fa fa-angle-double-right"></i></button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="menu" class="col col-sm-5">
+			<div id="starts-talking-pop-up" class="pop-up">
+				<button id="start">Starts Talking</button>
+			</div>
+			<div id="name-pop-up" class="pop-up">
+				<p>Who is talking?</p>
+				<input type="text" id="name" placeholder="insert character name">
+				<select id="gender">
+  					<option value="male">Male</option>
+  					<option value="female">Female</option>
+  					<option	value="other">Other</option>
+				</select>
+				<button id="confirm-name">Confirm</button>
+			</div>
+			<div id="on-frame-pop-up" class="pop-up">
+				<p>Is that character on frame?</p>
+				<button id="on-frame">Yes</button>
+				<button id="off-frame">No</button>
+			</div>
+			<div id="draw-on-frame-pop-up" class="pop-up">
+				<p>Please draw a rectangle around the character</p>
+				<button class="reset-selection" disabled="true">Reset Selection</button>
+				<button class="confirm-selection" disabled="true">Confirm Selection</button>
+			</div>
+			<div id="stops-talking-pop-up" class="pop-up">
+				<p>Watch the video until (character-name) stops talking</p>
+				<button id="stop">Stops Talking</button>
+			</div>
+			<div id="on-frame-again-pop-up" class="pop-up">
+				<p>Did the character ever appear on frame?</p>
+				<button id="on-frame-again">Yes</button>
+				<button id="off-frame-again">No</button>
+			</div>
+			<div id="draw-on-frame-again-pop-up" class="pop-up">
+				<p>Please draw a rectangle around the character</p>
+				<button class="reset-selection" disabled="true">Reset Selection</button>
+				<button class="confirm-selection" disabled="true">Confirm Selection</button>
+			</div>
+			<div id="extra-attributes-pop-up" class="empty pop-up">
+				<h2>Please Enter the following information about the current character</h2>
+				<div id="extra-attributes">
+					
+				</div>
+			</div>
+			<div id="finished-pop-up" class="pop-up">
+				<p>Your annotation has been stored in the list below</p>
+				<button id="another-annotation">Annotate another character</button>
+				<p>If there are no more characters to annotate, hit the <em>finish session</em> button below</p>
+			</div>
+		</div>
+			<div class="col col-xs-12">
+				<div class="row">
+					<form action="https://workersandbox.mturk.com/mturk/externalSubmit"
+						id='submit_form' method="POST">
+						<input type="submit" id="finish" style="" value='Finish Session'>
+						<input type="hidden" id="Data" name="Data" value="3468857">
+						<input type="hidden" id="assignmentId" name="assignmentId"
+							value="34657">
+					</form>
+				</div>
+			</div>
+			<div id="lastSub"><br></div>
+		</div>
+	</div>
+	<div id="table-toggle">Annotations <i class="fa fa-caret-up" aria-hidden="true"></i><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+	<div id="annotation-table" class="fluid-container">
+		<div id="annotation-table-header" class="row">
+			<div class="col col-sm-2">Character</div>
+			<div class="col col-sm-2">Start</div>
+			<div class="col col-sm-2">Stop</div>
+			<div class="col col-sm-2">Extra Attributes</div>
+			<div class="col col-sm-2">Delete Entry</div>
+			<div class="col col-sm-2 last"></div>
+		</div>
+	</div>
+	<script src="js/general.js"></script>
+	<script src="js/menu.js"></script>
+	<script src="js/drawing.js"></script>
+	<script src="js/extra.js"></script>
+	<script>
+		$(document).ready(function() {
+			var queryDict = {};
+			location.search.substr(1).split("&").forEach(function(item) {
+				queryDict[item.split("=")[0]] = item.split("=")[1]
+			});
+			$("#assignmentId").val(queryDict['assignmentId']);
+			$("#submit_form").submit(function(e) {
+				$("#Data").val(get_results());
+			})
+		});
+	</script>
+</body>
+</html>

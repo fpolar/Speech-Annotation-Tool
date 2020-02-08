@@ -1,0 +1,20 @@
+#Example Attribute
+#To allow the user to select a gender using radio buttons
+#<input type='radio' name="gender" value='male' checked> Male
+#<input type='radio' name='gender' value='female'> Female
+#<input type='radio' name='gender' value='other'> Other
+#If "other" is selected, the saved attribute will be "gender: other"
+#You can enter any html you would like to aid the user in understanding
+#what you would like
+#<h4>Select the Gender of the character</h4>
+#<input type='radio' name="gender" value='male' checked> Male
+#<input type='radio' name='gender' value='female'> Female
+#<input type='radio' name='gender' value='other'> Other 
+#<h4>Briefly describe the environment the character is in</h4>
+#<input type='text' name="environment">
+<h4>Select the Gender of the character</h4>
+<input type='radio' name="gender" value='male' checked> Male
+<input type='radio' name='gender' value='female'> Female
+<input type='radio' name='gender' value='other'> Other  
+<h4>Briefly describe the environment the character is in</h4>
+<input type='text' name="environment">

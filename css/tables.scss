@@ -1,0 +1,33 @@
+#table-toggle{
+	font-size: 2vw;
+	font-weight: bold;
+	background-color: #91B5FF;
+	border: 0px solid #1956ff;
+	border-bottom-width: 5px;
+	padding: 10px;
+	cursor: pointer;
+}
+
+#annotation-table, #annotation-table{
+	display: none;
+	padding: 25px;
+	flex-flow: column;
+	height: 100%;
+	overflow-y: scroll;
+	.row{
+		border: 2px solid #91B5FF;
+	}
+	.col{
+		border-right: 2px solid #91B5FF;
+		padding: 10px;
+	}
+	.last{
+		border-right: 0px;
+	}
+	button{
+		padding: 2px;
+	}
+}
+div .fa-caret-up{
+	display: none;
+}

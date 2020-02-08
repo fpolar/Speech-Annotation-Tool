@@ -1,0 +1,12 @@
+#menu {
+  text-align: center;
+  margin-top: 4vh;
+  padding: 0 5%; }
+  #menu .pop-up {
+    display: none;
+    height: 100%;
+    overflow-y: auto; }
+  #menu #starts-talking-pop-up {
+    display: block; }
+  #menu #finished-pop-up #another-annotation {
+    margin: 1.5vh; }

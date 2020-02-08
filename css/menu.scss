@@ -1,0 +1,20 @@
+#menu{
+	text-align: center;
+	margin-top: 4vh;
+	padding: 0 5%;
+	.pop-up{
+		display:none;
+		height:100%;
+//		overflow-y: scroll;
+		overflow-y: auto;
+	}
+	#starts-talking-pop-up{
+		display:block;
+	}
+	#finished-pop-up{
+		#another-annotation{
+			margin:1.5vh;
+		} 
+	}
+}
+
